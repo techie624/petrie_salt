@@ -1,6 +1,7 @@
 # petrie_salt
 Project to learn salt stack
 
+```bash
 saltstack_project/
 │
 ├── Vagrantfile                  # Vagrant configuration
@@ -29,4 +30,5 @@ saltstack_project/
 ├── .git/                        # Git metadata and source directory
 ├── .gitignore                   # Ignored file patterns for Git
 │
-└── ...                          # Any other files or directories you might have
+└──                           # Any other files or directories you might have
+```
