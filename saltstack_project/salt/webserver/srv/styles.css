@@ -1,0 +1,368 @@
+/* philosopher fonts found: */
+/* https://fonts.google.com/specimen/Philosopher */
+body {
+    font-family: 'Philosopher', sans-serif;
+    background-color: #1a1a1a;
+    color: #f4e8c1;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+header {
+    text-align: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+main {
+    font-family: 'Philosopher', sans-serif;
+    flex: 1;
+    padding-top: 100px;
+    padding-left: 220px;
+}
+
+.centered-heading {
+    text-align: center;
+}
+.banner {
+    background-image: url('./images/textures/purple_magics.png');
+    background-size: cover;
+    background-position: center;
+    padding: 25px 0;
+    height: 25px;
+}
+
+.banner h1 {
+    color: #f4e8c1;
+    margin: 0; /* Reset margin to remove any default spacing */
+    padding: 0; /* Reset padding to remove any default spacing */
+    text-align: left; /* Center the text horizontally */
+    line-height: 25px; /* Match the line height to the reduced header height */
+    padding-left: 20px; /* Add space between left side and text */
+}
+
+.banner h3 {
+    color: #f4e8c1;
+    margin: 0; /* Reset margin to remove any default spacing */
+    padding: 0; /* Reset padding to remove any default spacing */
+    text-align: left; /* Center the text horizontally */
+    line-height: 25px; /* Match the line height to the reduced header height */
+    padding-left: 20px; /* Add space between left side and text */
+    font-size: 12px; /* Specify your desired text size */
+    font-style: italic; /* Make the text italic */
+}
+
+nav {
+    background-color: #000000;
+    padding: 10px;
+    width: 200px;
+    height: calc(100vh - 150px); 
+    position: fixed;
+    top: 75px;
+    overflow: auto;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+nav a {
+    color: #f4e8c1;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    background-color: #480e5a;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+nav a:hover {
+    background-color: #5c5146;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: static;
+    min-width: 160px;
+    z-index: 1;
+    background-color: #3e312c;
+}
+
+.dropdown-content a {
+    color: #f4e8c1;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content.show {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #5c5146;
+}
+
+.description {
+    font-family: 'Philosopher', sans-serif;
+    color: #f4e8c1;
+    padding: 10px;
+    margin-bottom: 50px;
+    /* margin-top: 10px; */
+    /* margin-left: 30px; */
+}
+
+/* .desc-img {
+    float: right;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    width: 600px;
+    height: auto;
+}
+
+.desc-img-left {
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    width: 600px;
+    height: auto;
+} */
+
+.desc-img, .desc-img-left {
+    margin-bottom: 20px;
+    max-width: 100%; /* Ensure images don't exceed their container */
+    height: auto;
+}
+
+.desc-img {
+    float: right;
+    margin-left: 10px; /* Reduced margin */
+}
+
+.desc-img-left {
+    float: left;
+    margin-right: 10px; /* Reduced margin */
+}
+
+.desc-img-center {
+    display: block;
+    margin: 0 auto;
+    float: none; /* Remove the float property for center alignment */
+}
+
+footer {
+    font-family: 'Philosopher', sans-serif;
+    background-color: #2f2f2f;
+    color: #f4e8c1;
+    text-align: center;
+    padding: 10px;
+    width: 100%; /* Change this to 100% */
+    position: fixed; /* Change this to absolute */
+    height: 30px;
+    bottom: 0px; /* Add this line to align the footer to the bottom */
+    left: 0; /* Change this to 0 */
+}
+
+.character-item h3 {
+    text-align: center;
+}
+
+.character-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.character-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.character-item img {
+    width: 100%;
+    height: auto;
+}
+
+.arrow-button {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* features */
+.features-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+}
+.feature {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+}
+.feature h2 {
+    margin-top: 0;
+}
+.feature p {
+    margin-bottom: 0;
+}
+
+
+/* Tables */
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  th {
+    background-color: #49305a;;
+  }
+
+  tr:nth-child(even) {
+    background-color: #5c5146;;
+  }
+
+  .table-wrapped {
+    float: left;
+    width: 20%;
+    margin: 20px;
+  }
+  
+  .table-wrapped table {
+    border-collapse: collapse;
+  }
+  
+  .table-wrapped th,
+  .table-wrapped td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .table-wrapped th {
+    background-color: #5c5146;
+    color: #fff;
+  }
+  
+  .table-wrapped tr:nth-child(even) {
+    background-color: #5c5146;
+    color: #fff;
+  }
+
+  tr.special-row {
+    background-color: #634966; /* Special colored row <tr class="special-row"></tr> */
+}
+
+
+  .homebrew-container {
+    width: 100%;
+  }
+
+  .homebrew-rule {
+    margin-bottom: 20px;
+  }
+
+  .homebrew-rule h2 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .homebrew-rule p {
+    margin: 0;
+  }
+
+  a {
+    color: #ffffff; /* Change this to your desired color (e.g., #RRGGBB) */
+  }
+
+.spell-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.spell-table th,
+.spell-table td {
+    padding: 8px;
+    border: 1px solid black;
+    text-align: left;
+}
+
+.spell-table th:first-child,
+.spell-table td:first-child {
+    width: 150px;
+}
+
+.warning {
+    background-color: rgb(182, 59, 42); /* Use 'yellow' if you prefer */
+    color: white; /* This is for the text color, change as necessary */
+    padding: 10px;
+    text-align: center;
+    border: 1px solid rgb(249, 252, 93); /* Adjust border color as necessary */
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.tablink {
+    font-family: 'Philosopher', sans-serif;
+    background-color: #5c5146;
+    color: #f4e8c1;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    padding-bottom: 10px;
+    font-size: 17px;
+    width: calc(50% - 10px); /* Adjusted width to account for the margin */
+    border-radius: 15px; /* This will give a rounded appearance. Adjust as needed. */
+    margin-right: 10px; /* Space between the buttons. Adjust as needed. */
+    width: 30%;
+}
+
+.tablink:hover {
+    background-color: #5c5146;
+}
+
+.tablink:last-child {
+    margin-right: 0;
+}
+
+.tabcontent {
+    color: #5c5146;
+    display: none;
+    padding: 50px 20px;
+    height: 100%;
+}

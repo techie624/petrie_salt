@@ -2,10 +2,10 @@ install_nginx:
   pkg.installed:
     - name: nginx
 
-configure_nginx:
-  file.managed:
-    - name: /var/www/html/index.html
-    - source: salt://webserver/srv/index.html
+website_files:
+  file.recurse:
+    - name: /var/www/html
+    - source: salt://webserver/srv
 
 data_file:
   file.managed:
