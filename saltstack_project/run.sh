@@ -22,12 +22,12 @@ sleep 10
 # Restart salt-minion service to ensure it communicates with the master
 vagrant ssh saltmaster -c "sudo systemctl restart salt-master"
 
-sleep 3
+sleep 10
 
 # test keys
 vagrant ssh saltmaster -c "sudo salt-key -L"
 
-sleep 3
+sleep 10
 
 # run state.apply
 vagrant ssh saltmaster -c "sudo salt 'saltminion1.local' state.apply webserver"
