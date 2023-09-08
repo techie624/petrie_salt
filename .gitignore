@@ -1,2 +1,3 @@
 .vagrant/
 *.log
+master_ip.txt
