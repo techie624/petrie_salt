@@ -7,13 +7,40 @@ website_files:
     - name: /var/www/html
     - source: salt://webserver/srv
 
-data_file:
-  file.managed:
-    - name: /var/www/html/data.txt
-    - source: salt://webserver/srv/data.txt
+install_mariadb:
+  pkg.installed:
+    - name: mariadb-server
 
-get_data_script:
-  file.managed:
-    - name: /usr/local/bin/get_data.sh
-    - source: salt://webserver/srv/get_data.sh
-    - mode: 755
+mariadb_service:
+  service.running:
+    - name: mariadb
+    - enable: True
+    - require:
+      - pkg: install_mariadb
+
+deploy_schema:
+  cmd.run:
+    - name: mysql < /vagrant/salt/webserver/schema.sql
+    - require:
+      - pkg: install_mariadb
+
+# Adjusting for .php index file
+adjust_nginx_for_php:
+  file.replace:
+    - name: /etc/nginx/sites-available/default
+    - pattern: "index index.html;"
+    - repl: "index index.php index.html;"
+    - append_if_not_found: True
+
+install_php:
+  pkg.installed:
+    - names:
+      - php-fpm
+      - php-mysqli
+
+php_service:
+  service.running:
+    - name: php7.2-fpm
+    - enable: True
+    - require:
+      - pkg: install_php
