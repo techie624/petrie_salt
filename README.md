@@ -12,7 +12,7 @@ Project to learn salt stack
 
 
 ```bash
-saltstack_project/
+petrie_salt/
 .
 ├── README.md
 └── saltstack_project
