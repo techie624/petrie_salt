@@ -1,5 +1,7 @@
 # petrie_salt
-Project to learn salt stack
+~~Project to learn salt stack~~
+
+Project has given a basic insight to how salt stack works. Next steps I think I'll build this with terraform from github actions using EC2 free T2's.
 
 ## Prerequisites:
 
