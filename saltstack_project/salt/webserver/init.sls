@@ -7,36 +7,61 @@ website_files:
     - name: /var/www/html
     - source: salt://webserver/srv
 
-install_mariadb:
+install_postgresql:
   pkg.installed:
-    - name: mariadb-server
+    - names:
+      - postgresql
+      - postgresql-client
 
-mariadb_service:
+postgresql_service:
   service.running:
-    - name: mariadb
+    - name: postgresql
     - enable: True
     - require:
-      - pkg: install_mariadb
+      - pkg: install_postgresql
 
-deploy_schema:
-  cmd.run:
-    - name: mysql < /vagrant/salt/webserver/schema.sql
+configure_pg_auth:
+  cmd.script:
+    - source: salt://webserver/configure_pg_auth.sh
+    - user: root
+
+deploy_db_init_script:
+  file.managed:
+    - name: /usr/local/bin/init_pg.sh
+    - source: salt://webserver/init_pg.sh
+    - mode: 755
     - require:
-      - pkg: install_mariadb
+      - pkg: install_postgresql
 
-# Adjusting for .php index file
-adjust_nginx_for_php:
-  file.replace:
+init_database:
+  cmd.run:
+    - name: /usr/local/bin/init_pg.sh
+    - require:
+      - file: deploy_db_init_script
+
+replace_nginx_default_config:
+  file.managed:
     - name: /etc/nginx/sites-available/default
-    - pattern: "index index.html;"
-    - repl: "index index.php index.html;"
-    - append_if_not_found: True
+    - source: salt://webserver/nginx_default.conf  
+    - user: root
+    - group: root
+    - mode: 644
+    - backup: minion
+    - require:
+      - pkg: nginx
+
+nginx_service:
+  service.running:
+    - name: nginx
+    - enable: True  # This ensures the service starts on boot.
+    - watch:
+      - file: replace_nginx_default_config
 
 install_php:
   pkg.installed:
     - names:
       - php-fpm
-      - php-mysqli
+      - php-pgsql
 
 php_service:
   service.running:

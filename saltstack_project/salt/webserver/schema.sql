@@ -1,8 +1,7 @@
-CREATE DATABASE IF NOT EXISTS webapp;
-USE webapp;
+-- Database creation is handled in the init_pg.sh script
 
 CREATE TABLE IF NOT EXISTS users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL
 );
 

@@ -25,6 +25,39 @@
         </ul>
     </nav>
     <main>
+        echo "Before Table";
+        <?php
+        $servername = "localhost";
+        $username = "webuser";
+        $password = "password";
+        $dbname = "webapp";
+        
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+        
+        $sql = "SELECT id, name FROM users";
+        $result = $conn->query($sql);
+        
+        if ($result->num_rows > 0) {
+            // Output data of each row
+            echo "<table>";
+            echo "<tr><th>ID</th><th>Name</th></tr>";
+            while($row = $result->fetch_assoc()) {
+                echo "<tr><td>" . $row["id"]. "</td><td>" . $row["name"]. "</td></tr>";
+            }
+            echo "</table>";
+        } else {
+            echo "0 results";
+        }
+        
+        $conn->close();
+        ?>
+        echo "After Table";
         <div class="description">
             <h2 class="centered-heading">Hello Engineers!</h2>
             <div class="character-grid">
@@ -39,37 +72,6 @@
                     <h3>Github</h3>
                 </div>
             </div>
-            <?php
-            $servername = "localhost";
-            $username = "webuser";
-            $password = "password";
-            $dbname = "webapp";
-            
-            // Create connection
-            $conn = new mysqli($servername, $username, $password, $dbname);
-            
-            // Check connection
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-            
-            $sql = "SELECT id, name FROM users";
-            $result = $conn->query($sql);
-            
-            if ($result->num_rows > 0) {
-                // Output data of each row
-                echo "<table>";
-                echo "<tr><th>ID</th><th>Name</th></tr>";
-                while($row = $result->fetch_assoc()) {
-                    echo "<tr><td>" . $row["id"]. "</td><td>" . $row["name"]. "</td></tr>";
-                }
-                echo "</table>";
-            } else {
-                echo "0 results";
-            }
-            
-            $conn->close();
-            ?>
         </div>
     </main>
     <footer>
