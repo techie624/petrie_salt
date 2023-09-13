@@ -53,7 +53,7 @@ replace_nginx_default_config:
 nginx_service:
   service.running:
     - name: nginx
-    - enable: True  # This ensures the service starts on boot.
+    - enable: True
     - watch:
       - file: replace_nginx_default_config
 
@@ -69,3 +69,24 @@ php_service:
     - enable: True
     - require:
       - pkg: install_php
+
+enable_php_errors:
+  file.replace:
+    - name: /etc/php/7.2/fpm/php.ini
+    - pattern: '^display_errors = Off'
+    - repl: 'display_errors = On'
+    - append_if_not_found: True
+
+set_php_error_reporting:
+  file.replace:
+    - name: /etc/php/7.2/fpm/php.ini
+    - pattern: '^error_reporting = .+'
+    - repl: 'error_reporting = E_ALL'
+    - append_if_not_found: True
+
+restart_php_fpm_after_ini_change:
+  cmd.run:
+    - name: 'systemctl restart php7.2-fpm'
+    - watch:
+      - file: enable_php_errors
+      - file: set_php_error_reporting

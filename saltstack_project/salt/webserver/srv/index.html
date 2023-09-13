@@ -22,42 +22,12 @@
             <li><a href="./index.html">Roy Petrie</a></li>
             <li><a href="https://www.linkedin.com/in/rpetrie/">Linkedin</a></li>
             <li><a href="https://github.com/techie624">Github</a></li>
+            <li><a href="table.php">User Data Table</a></li>  
+
         </ul>
     </nav>
     <main>
-        echo "Before Table";
-        <?php
-        $servername = "localhost";
-        $username = "webuser";
-        $password = "password";
-        $dbname = "webapp";
         
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        
-        // Check connection
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-        
-        $sql = "SELECT id, name FROM users";
-        $result = $conn->query($sql);
-        
-        if ($result->num_rows > 0) {
-            // Output data of each row
-            echo "<table>";
-            echo "<tr><th>ID</th><th>Name</th></tr>";
-            while($row = $result->fetch_assoc()) {
-                echo "<tr><td>" . $row["id"]. "</td><td>" . $row["name"]. "</td></tr>";
-            }
-            echo "</table>";
-        } else {
-            echo "0 results";
-        }
-        
-        $conn->close();
-        ?>
-        echo "After Table";
         <div class="description">
             <h2 class="centered-heading">Hello Engineers!</h2>
             <div class="character-grid">
@@ -71,6 +41,7 @@
                     <a href="https://github.com/techie624"><img src="./images/profile_github.png" alt="Github"></a>
                     <h3>Github</h3>
                 </div>
+                
             </div>
         </div>
     </main>
